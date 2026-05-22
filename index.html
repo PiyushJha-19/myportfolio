@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piyush Jha — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── CURSOR ── -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar">
+    <div class="logo">
+      <span class="logo-dot"></span>
+      PJ
+    </div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-ham" id="ham">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+
+    <div class="hero-mandala">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="190" stroke="#e8853a" stroke-width="0.6"/>
+        <circle cx="200" cy="200" r="155" stroke="#e8853a" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="120" stroke="#c4566a" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="85"  stroke="#e8853a" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="50"  stroke="#c4566a" stroke-width="0.4"/>
+        <circle cx="200" cy="200" r="18"  stroke="#e8853a" stroke-width="0.6"/>
+        <line x1="200" y1="10"  x2="200" y2="390" stroke="#e8853a" stroke-width="0.4"/>
+        <line x1="10"  y1="200" x2="390" y2="200" stroke="#e8853a" stroke-width="0.4"/>
+        <line x1="55"  y1="55"  x2="345" y2="345" stroke="#e8853a" stroke-width="0.4"/>
+        <line x1="345" y1="55"  x2="55"  y2="345" stroke="#e8853a" stroke-width="0.4"/>
+        <line x1="130" y1="10"  x2="270" y2="390" stroke="#c4566a" stroke-width="0.3"/>
+        <line x1="270" y1="10"  x2="130" y2="390" stroke="#c4566a" stroke-width="0.3"/>
+        <line x1="10"  y1="130" x2="390" y2="270" stroke="#c4566a" stroke-width="0.3"/>
+        <line x1="10"  y1="270" x2="390" y2="130" stroke="#c4566a" stroke-width="0.3"/>
+        <polygon points="200,20 220,180 380,200 220,220 200,380 180,220 20,200 180,180" stroke="#e8853a" stroke-width="0.5" fill="none"/>
+        <polygon points="200,60 216,184 340,200 216,216 200,340 184,216 60,200 184,184" stroke="#c4566a" stroke-width="0.4" fill="none"/>
+        <polygon points="200,100 212,188 300,200 212,212 200,300 188,212 100,200 188,188" stroke="#e8853a" stroke-width="0.4" fill="none"/>
+        <circle cx="200" cy="10"  r="3" fill="#e8853a" opacity="0.4"/>
+        <circle cx="200" cy="390" r="3" fill="#e8853a" opacity="0.4"/>
+        <circle cx="10"  cy="200" r="3" fill="#e8853a" opacity="0.4"/>
+        <circle cx="390" cy="200" r="3" fill="#e8853a" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <div class="hero-petals">
+      <span class="petal p1">✿</span>
+      <span class="petal p2">✾</span>
+      <span class="petal p3">✿</span>
+      <span class="petal p4">❀</span>
+      <span class="petal p5">✾</span>
+    </div>
+
+    <div class="hero-content">
+      <p class="eyebrow">
+        <span class="eyebrow-line"></span>
+        Vrindavan &nbsp;·&nbsp; शांतिः &nbsp;·&nbsp; Presence
+        <span class="eyebrow-line"></span>
+      </p>
+      <h1>
+        Building<br>
+        <em>devotional,</em><br>
+        calm digital<br>
+        <span class="gold">experiences.</span>
+      </h1>
+      <p class="hero-desc">
+        A fullstack learner crafting interfaces with the stillness
+        of a temple garden — peaceful, purposeful, and alive with
+        quiet beauty.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">Explore Work <span>→</span></a>
+        <a href="#contact" class="btn-ghost">Say Hello</a>
+      </div>
+      <div class="hero-scroll-hint">
+        <span class="scroll-line"></span>
+        <p>Scroll</p>
+      </div>
+    </div>
+
+    <div class="hero-side-text">Portfolio · 2025</div>
+
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Fullstack Development</span>
+      <span class="sep">✦</span>
+      <span>UI Design</span>
+      <span class="sep">✦</span>
+      <span>Mindful Interfaces</span>
+      <span class="sep">✦</span>
+      <span>React · Node · CSS</span>
+      <span class="sep">✦</span>
+      <span>Fullstack Development</span>
+      <span class="sep">✦</span>
+      <span>UI Design</span>
+      <span class="sep">✦</span>
+      <span>Mindful Interfaces</span>
+      <span class="sep">✦</span>
+      <span>React · Node · CSS</span>
+      <span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section class="about" id="about">
+
+    <div class="about-image-wrap reveal">
+      <div class="about-img-frame">
+        <img src="?q=80&w=800&auto=format&fit=crop" alt="Piyush">
+        <div class="about-img-border"></div>
+      </div>
+      <div class="about-img-tag">Fullstack Learner · Designer</div>
+    </div>
+
+    <div class="about-text reveal">
+      <p class="section-tag">✦ About Me</p>
+      <h2>
+        Designing with<br>
+        <em>stillness</em> and<br>
+        deep feeling.
+      </h2>
+      <p>
+        I'm a fullstack developer and designer focused on creating calm
+        digital experiences rooted in minimalist aesthetics and heartfelt
+        intention. Every pixel has a purpose.
+      </p>
+      <p>
+        Inspired by the lanes of Vrindavan — marigold light, temple bells,
+        the hush of the Yamuna at dawn — I build interfaces that breathe,
+        that feel alive without noise.
+      </p>
+      <blockquote>
+        "Chant Names as much as u can."
+        <cite>—Gurudevju </cite>
+      </blockquote>
+      <a href="#contact" class="btn-primary">Let's Connect <span>→</span></a>
+    </div>
+
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section class="skills" id="skills">
+
+    <div class="skills-header reveal">
+      <p class="section-tag">✦ What I Work With</p>
+      <h2>Skills &amp; <em>Craft</em></h2>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">⬡</div>
+        <h3>Frontend</h3>
+        <p>HTML · CSS · JavaScript · React · Tailwind</p>
+        <div class="skill-bar"><div class="skill-fill" data-w="85"></div></div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">⬡</div>
+        <h3>Backend</h3>
+        <p>Node.js · Express · REST APIs · MongoDB</p>
+        <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">⬡</div>
+        <h3>Design</h3>
+        <p>Figma · Typography · Spacing · Motion</p>
+        <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-icon">⬡</div>
+        <h3>Tools</h3>
+        <p>Git · VS Code · Vercel · Postman</p>
+        <div class="skill-bar"><div class="skill-fill" data-w="75"></div></div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="projects" id="projects">
+
+    <div class="projects-header reveal">
+      <p class="section-tag">✦ Projects I'm Building</p>
+      <h2>Crafted with <em>love</em><br>and intention.</h2>
+    </div>
+
+    <div class="project-list">
+
+      <div class="project-item reveal" data-num="01">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Luxury Restaurant">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-tag">Web Design</span>
+          <h3>Luxury Restaurant Concept</h3>
+          <p>
+            Cinematic landing page with smooth transitions, elegant
+            typography and a warm, sacred atmosphere. Built to feel like
+            an experience before you even walk in.
+          </p>
+          <div class="project-stack">
+            <span>HTML</span><span>CSS</span><span>GSAP</span>
+          </div>
+          <a href="#" class="btn-outline">View Project <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="project-item reveal flip" data-num="02">
+        <div class="project-img coming">
+          <div class="coming-inner">
+            <span class="coming-icon">✦</span>
+            <p>Coming Soon</p>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-tag">App UI</span>
+          <h3>Wellness &amp; Mindfulness App</h3>
+          <p>
+            A breathing-room interface for daily mindfulness tracking.
+            Rooted in soft spatial rhythms, gentle motion, and the quiet
+            colour of dawn sky.
+          </p>
+          <div class="project-stack">
+            <span>React</span><span>Tailwind</span><span>Framer</span>
+          </div>
+          <a href="#" class="btn-outline">In Progress <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="project-item reveal" data-num="03">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?q=80&w=1200&auto=format&fit=crop" alt="Portfolio">
+          <div class="project-img-overlay"></div>
+        </div>
+        <div class="project-info">
+          <span class="project-tag">Portfolio</span>
+          <h3>Peaceful Portfolio Experience</h3>
+          <p>
+            A calm minimalist portfolio inspired by timeless architecture
+            and spiritual stillness. This very site — a living project,
+            always evolving.
+          </p>
+          <div class="project-stack">
+            <span>HTML</span><span>CSS</span><span>JS</span>
+          </div>
+          <a href="#" class="btn-outline">View Source <span>→</span></a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact" id="contact">
+
+    <div class="contact-bg-text">Hello</div>
+
+    <div class="contact-inner reveal">
+      <p class="section-tag">✦ Get In Touch</p>
+      <h2>Let's build something<br><em>beautiful</em> together.</h2>
+      <p class="contact-sub">
+        Whether you have a project in mind, want to collaborate,
+        or just want to say Jai Shree Krishn — I'm here.
+      </p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" placeholder="Yoourname@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project, your dreams, or just say hello…" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">
+          Send Message <span>✦</span>
+        </button>
+      </form>
+
+      <div class="contact-links">
+        <a href="#">GitHub</a>
+        <span class="sep">·</span>
+        <a href="#">LinkedIn</a>
+        <span class="sep">·</span>
+        <a href="#">Twitter</a>
+        <span class="sep">·</span>
+        <a href="mailto:pjha6846@email.com">Email</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-dot"></span>
+        PJ
+      </div>
+      <p class="footer-copy">
+        Crafted with stillness &amp; love &nbsp;·&nbsp; Vrindavan Inspired &nbsp;·&nbsp; © 2025 Piyush Jha
+      </p>
+      <p class="footer-quote">🪔 Jai Shree Krishn</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
