@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- ── CURSOR TRAIL CANVAS ── -->
+  <canvas id="trail-canvas"></canvas>
 
   <!-- ── CURSOR ── -->
   <div class="cursor" id="cursor"></div>
@@ -29,10 +31,18 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="nav-ham" id="ham">
-      <span></span><span></span><span></span>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🪔</span>
+      </button>
+      <div class="nav-ham" id="ham" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </nav>
+
+  <!-- Close button shown only when mobile menu is open -->
+  <button class="menu-close" id="menu-close" aria-label="Close menu">✕</button>
 
   <!-- ── HERO ── -->
   <section class="hero" id="hero">
@@ -102,17 +112,17 @@
 
   </section>
 
+  <!-- ── SHLOKA 1 ── -->
+  <div class="shloka-divider">
+    <span class="shloka-sym">✦</span>
+    <p class="shloka-text">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+    <p class="shloka-trans">You have the right to work, but never to the fruit of work.</p>
+    <span class="shloka-sym">✦</span>
+  </div>
+
   <!-- ── MARQUEE ── -->
   <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Fullstack Development</span>
-      <span class="sep">✦</span>
-      <span>UI Design</span>
-      <span class="sep">✦</span>
-      <span>Mindful Interfaces</span>
-      <span class="sep">✦</span>
-      <span>React · Node · CSS</span>
-      <span class="sep">✦</span>
+    <div class="marquee-track" id="marquee-track">
       <span>Fullstack Development</span>
       <span class="sep">✦</span>
       <span>UI Design</span>
@@ -124,12 +134,20 @@
     </div>
   </div>
 
+  <!-- ── YAMUNA WAVE ── -->
+  <div class="yamuna-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path-1" d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1350,20 1440,40 L1440,80 L0,80 Z"/>
+      <path class="wave-path-2" d="M0,50 C200,20 400,70 600,50 C800,30 1000,70 1200,50 C1320,38 1380,55 1440,50 L1440,80 L0,80 Z" opacity="0.5"/>
+    </svg>
+  </div>
+
   <!-- ── ABOUT ── -->
   <section class="about" id="about">
 
     <div class="about-image-wrap reveal">
       <div class="about-img-frame">
-        <img src="?q=80&w=800&auto=format&fit=crop" alt="Piyush">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Piyush">
         <div class="about-img-border"></div>
       </div>
       <div class="about-img-tag">Fullstack Learner · Designer</div>
@@ -153,13 +171,29 @@
         that feel alive without noise.
       </p>
       <blockquote>
-        "Chant Names as much as u can."
-        <cite>—Gurudevju </cite>
+        "Chant ShreeHari names as much as u can!"
+        <cite>— Gurudev Ju</cite>
       </blockquote>
       <a href="#contact" class="btn-primary">Let's Connect <span>→</span></a>
     </div>
 
   </section>
+
+  <!-- ── YAMUNA WAVE FLIP ── -->
+  <div class="yamuna-wave flip" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path-1" d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1350,20 1440,40 L1440,80 L0,80 Z"/>
+      <path class="wave-path-2" d="M0,50 C200,20 400,70 600,50 C800,30 1000,70 1200,50 C1320,38 1380,55 1440,50 L1440,80 L0,80 Z" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- ── SHLOKA 2 ── -->
+  <div class="shloka-divider">
+    <span class="shloka-sym">✦</span>
+    <p class="shloka-text">योगः कर्मसु कौशलम्</p>
+    <p class="shloka-trans">Yoga is excellence in action.</p>
+    <span class="shloka-sym">✦</span>
+  </div>
 
   <!-- ── SKILLS ── -->
   <section class="skills" id="skills">
@@ -203,6 +237,14 @@
 
   </section>
 
+  <!-- ── SHLOKA 3 ── -->
+  <div class="shloka-divider">
+    <span class="shloka-sym">✦</span>
+    <p class="shloka-text">सर्वे भवन्तु सुखिनः</p>
+    <p class="shloka-trans">May all beings be happy.</p>
+    <span class="shloka-sym">✦</span>
+  </div>
+
   <!-- ── PROJECTS ── -->
   <section class="projects" id="projects">
 
@@ -214,7 +256,7 @@
     <div class="project-list">
 
       <div class="project-item reveal" data-num="01">
-        <div class="project-img">
+        <div class="project-img darshan">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Luxury Restaurant">
           <div class="project-img-overlay"></div>
         </div>
@@ -256,7 +298,7 @@
       </div>
 
       <div class="project-item reveal" data-num="03">
-        <div class="project-img">
+        <div class="project-img darshan">
           <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?q=80&w=1200&auto=format&fit=crop" alt="Portfolio">
           <div class="project-img-overlay"></div>
         </div>
@@ -300,7 +342,7 @@
           </div>
           <div class="form-group">
             <label>Your Email</label>
-            <input type="email" placeholder="Yoourname@email.com" required>
+            <input type="email" placeholder="Your Email" required>
           </div>
         </div>
         <div class="form-group">
@@ -319,7 +361,7 @@
         <span class="sep">·</span>
         <a href="#">Twitter</a>
         <span class="sep">·</span>
-        <a href="mailto:pjha6846@email.com">Email</a>
+        <a href="mailto:pjha6846@gmail.com">Email</a>
       </div>
     </div>
 
@@ -333,7 +375,7 @@
         PJ
       </div>
       <p class="footer-copy">
-        Crafted with stillness &amp; love &nbsp;·&nbsp; Vrindavan Inspired &nbsp;·&nbsp; © 2025 Piyush Jha
+        Crafted with stillness &amp; love &nbsp;·&nbsp; Vrindavan Inspired &nbsp;·&nbsp; © 2025 Piyush Joshi
       </p>
       <p class="footer-quote">🪔 Jai Shree Krishn</p>
     </div>
