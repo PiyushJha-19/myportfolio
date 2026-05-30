@@ -100,7 +100,7 @@ const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+}, { passive: true });
 
 
 // ── MOBILE HAMBURGER ──
@@ -209,7 +209,7 @@ window.addEventListener('scroll', () => {
   if (!mandala) return;
   const scrollY = window.scrollY;
   mandala.style.transform = `translateY(calc(-50% + ${scrollY * 0.12}px))`;
-});
+}, { passive: true });
 
 
 // ── ACTIVE NAV LINK highlight on scroll ──
@@ -230,25 +230,29 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── DARK MODE TOGGLE ──
+// ── DARK MODE TOGGLE (pill slider) ──
 const themeToggle = document.getElementById('theme-toggle');
-const themeIcon   = themeToggle.querySelector('.theme-icon');
 
-// Read saved preference on load
+// Restore saved preference on load — no icon swap needed,
+// CSS handles everything via body.dark class
 const saved = localStorage.getItem('vr-theme');
 if (saved === 'dark') {
   document.body.classList.add('dark');
-  themeIcon.textContent = '☀️';
 }
 
-themeToggle.addEventListener('click', () => {
+function toggleTheme() {
   const isDark = document.body.classList.toggle('dark');
-
-  // Swap icon — diya for light, moon/stars for dark
-  themeIcon.textContent = isDark ? '☀️' : '🪔';
-
-  // Save preference
   localStorage.setItem('vr-theme', isDark ? 'dark' : 'light');
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+
+// Also allow keyboard Enter/Space since it's a div not a button
+themeToggle.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleTheme();
+  }
 });
 
 
@@ -417,4 +421,240 @@ themeToggle.addEventListener('click', () => {
   }, { threshold: 0.4 });
 
   shlokas.forEach(el => obs.observe(el));
+})();
+
+
+
+// ════════════════════════════════════════
+// ✦ MUSIC BUTTON
+// ════════════════════════════════════════
+(function () {
+  const musicBtn = document.getElementById('music-btn');
+  const audio    = document.getElementById('bg-music');
+  if (!musicBtn || !audio) return;
+
+  // Volume fade helper
+  function fadeVol(target, ms, cb) {
+    const start = audio.volume;
+    const steps = 40;
+    const dt    = (target - start) / steps;
+    let   n     = 0;
+    const id = setInterval(() => {
+      n++;
+      audio.volume = Math.min(1, Math.max(0, start + dt * n));
+      if (n >= steps) { clearInterval(id); if (cb) cb(); }
+    }, ms / steps);
+  }
+
+  // Start muted — user must tap to play (browser rule)
+  let playing = false;
+  musicBtn.classList.add('muted');
+
+  musicBtn.addEventListener('click', () => {
+    if (!playing) {
+      audio.volume = 0;
+      audio.play().then(() => fadeVol(0.35, 1200)).catch(() => {});
+      musicBtn.classList.remove('muted');
+    } else {
+      fadeVol(0, 600, () => audio.pause());
+      musicBtn.classList.add('muted');
+    }
+    playing = !playing;
+  });
+
+  // Politely drop volume when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (!playing) return;
+    fadeVol(document.hidden ? 0.08 : 0.35, 500);
+  });
+})();
+
+
+// ════════════════════════════════════════
+// ✦ PAGE LOAD BAR
+// ════════════════════════════════════════
+(function () {
+  const bar = document.getElementById('load-bar');
+  if (!bar) return;
+  let w = 0;
+  // Fake progress — ramps to 90% quickly then waits for load
+  const iv = setInterval(() => {
+    w += Math.random() * 18;
+    if (w > 90) { w = 90; clearInterval(iv); }
+    bar.style.width = w + '%';
+  }, 120);
+
+  window.addEventListener('load', () => {
+    clearInterval(iv);
+    bar.style.width = '100%';
+    setTimeout(() => { bar.style.opacity = '0'; }, 400);
+    setTimeout(() => { bar.remove(); }, 900);
+  });
+})();
+
+
+// ════════════════════════════════════════
+// ✦ BACK TO TOP
+// ════════════════════════════════════════
+(function () {
+  const btn = document.getElementById('back-top');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+
+// ════════════════════════════════════════
+// ✦ TYPED TEXT IN HERO
+// Cycles: devotional → peaceful → minimal → sacred
+// ════════════════════════════════════════
+(function () {
+  const el    = document.getElementById('typed-word');
+  if (!el) return;
+  const words = ['devotional,', 'peaceful,', 'minimal,', 'sacred,', 'purposeful,'];
+  let   wi    = 0;
+  let   ci    = words[0].length; // start fully typed
+  let   deleting = false;
+  let   pausing  = false;
+
+  function tick() {
+    const word = words[wi];
+    if (pausing) { pausing = false; setTimeout(tick, 1400); return; }
+
+    if (!deleting) {
+      el.textContent = word.slice(0, ci);
+      ci++;
+      if (ci > word.length) { deleting = true; pausing = true; }
+      setTimeout(tick, deleting ? 60 : 95);
+    } else {
+      el.textContent = word.slice(0, ci);
+      ci--;
+      if (ci < 0) {
+        deleting = false;
+        wi = (wi + 1) % words.length;
+        ci = 0;
+        pausing = true;
+      }
+      setTimeout(tick, 55);
+    }
+  }
+  // Start cycling after 3s so user reads it first
+  setTimeout(tick, 3000);
+})();
+
+
+// ════════════════════════════════════════
+// ✦ SKILL % LABELS — show after bars animate
+// ════════════════════════════════════════
+(function () {
+  const skillSection = document.getElementById('skills');
+  if (!skillSection) return;
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      // existing skill bar animation runs at 300ms
+      setTimeout(() => {
+        document.querySelectorAll('.skill-pct').forEach(el => el.classList.add('show'));
+      }, 900);
+      obs.unobserve(skillSection);
+    }
+  }, { threshold: 0.3 });
+  obs.observe(skillSection);
+})();
+
+
+// ════════════════════════════════════════
+// ✦ FORM VALIDATION
+// ════════════════════════════════════════
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  function showError(input, msg) {
+    input.classList.add('error');
+    let err = input.parentElement.querySelector('.field-error');
+    if (!err) {
+      err = document.createElement('p');
+      err.className = 'field-error';
+      input.parentElement.appendChild(err);
+    }
+    err.textContent = msg;
+    requestAnimationFrame(() => err.classList.add('show'));
+  }
+
+  function clearError(input) {
+    input.classList.remove('error');
+    const err = input.parentElement.querySelector('.field-error');
+    if (err) { err.classList.remove('show'); setTimeout(() => err.remove(), 300); }
+  }
+
+  // Clear error on input
+  form.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', () => clearError(el));
+  });
+
+  // Override existing submit handler — add validation first
+  const existingSubmit = form.onsubmit;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+    const name  = form.querySelector('input[type="text"]');
+    const email = form.querySelector('input[type="email"]');
+    const msg   = form.querySelector('textarea');
+
+    if (!name.value.trim()) {
+      showError(name, 'Please enter your name'); valid = false;
+    }
+    if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      showError(email, 'Please enter a valid email'); valid = false;
+    }
+    if (!msg.value.trim() || msg.value.trim().length < 10) {
+      showError(msg, 'Message must be at least 10 characters'); valid = false;
+    }
+    if (!valid) return;
+
+    // All good — run existing submit animation
+    const btn = form.querySelector('.form-submit');
+    const orig = btn.innerHTML;
+    btn.innerHTML = 'Sending ✦';
+    btn.style.background = 'var(--saffron)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = 'Sent with love ✦';
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }, 1200);
+  });
+})();
+
+
+// ════════════════════════════════════════
+// ✦ NAV ACTIVE LINK — fix on page load too
+// ════════════════════════════════════════
+(function () {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav ul a');
+
+  function setActive() {
+    let current = 'hero';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 220) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === '#' + current;
+      link.style.color  = isActive ? 'var(--saffron)' : '';
+      link.style.fontWeight = isActive ? '500' : '';
+    });
+  }
+
+  // Run on load + scroll
+  setActive();
+  window.addEventListener('scroll', setActive, { passive: true });
 })();
