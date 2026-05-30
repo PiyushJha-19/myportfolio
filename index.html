@@ -4,12 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piyush Jha — Portfolio</title>
+  <meta name="description" content="Piyush Jha — Fullstack Developer & Designer crafting calm, devotional digital experiences inspired by Vrindavan.">
+  <meta name="author" content="Piyush Jha">
+  <meta property="og:title" content="Piyush Jha — Portfolio">
+  <meta property="og:description" content="Fullstack Developer & Designer crafting calm, meaningful interfaces.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#e8853a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- ── PAGE LOAD BAR ── -->
+  <div id="load-bar"></div>
+
+  <!-- ── AUDIO ── -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_fc4429eb25.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ── MUSIC BUTTON ── -->
+  <button class="music-btn" id="music-btn" aria-label="Toggle music">
+    <span class="music-bars" id="music-bars">
+      <span></span><span></span><span></span><span></span>
+    </span>
+    <span class="music-muted-icon" id="music-muted-icon">♪</span>
+  </button>
 
   <!-- ── CURSOR TRAIL CANVAS ── -->
   <canvas id="trail-canvas"></canvas>
@@ -32,9 +55,17 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <span class="theme-icon">🪔</span>
-      </button>
+      <!-- Sliding pill toggle — light/dark mode -->
+      <div class="theme-toggle" id="theme-toggle" role="button" aria-label="Toggle dark mode" tabindex="0">
+        <div class="toggle-track">
+          <span class="toggle-bars">
+            <span></span><span></span>
+          </span>
+          <div class="toggle-knob">
+            <span class="toggle-knob-icon"></span>
+          </div>
+        </div>
+      </div>
       <div class="nav-ham" id="ham" aria-label="Open menu">
         <span></span><span></span><span></span>
       </div>
@@ -89,7 +120,7 @@
       </p>
       <h1>
         Building<br>
-        <em>devotional,</em><br>
+        <em><span id="typed-word">devotional,</span></em><br>
         calm digital<br>
         <span class="gold">experiences.</span>
       </h1>
@@ -147,7 +178,7 @@
 
     <div class="about-image-wrap reveal">
       <div class="about-img-frame">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Piyush">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Piyush" loading="lazy">
         <div class="about-img-border"></div>
       </div>
       <div class="about-img-tag">Fullstack Learner · Designer</div>
@@ -172,9 +203,12 @@
       </p>
       <blockquote>
         "Chant ShreeHari names as much as u can!"
-        <cite>— Gurudev Ju</cite>
+        <cite>— Gurudevju</cite>
       </blockquote>
-      <a href="#contact" class="btn-primary">Let's Connect <span>→</span></a>
+      <div class="about-ctas">
+        <a href="#contact" class="btn-primary">Let's Connect <span>→</span></a>
+        <a href="cv.pdf" download class="btn-ghost cv-btn">Download CV <span>↓</span></a>
+      </div>
     </div>
 
   </section>
@@ -209,28 +243,28 @@
         <div class="skill-icon">⬡</div>
         <h3>Frontend</h3>
         <p>HTML · CSS · JavaScript · React · Tailwind</p>
-        <div class="skill-bar"><div class="skill-fill" data-w="85"></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
       </div>
 
       <div class="skill-card reveal">
         <div class="skill-icon">⬡</div>
         <h3>Backend</h3>
         <p>Node.js · Express · REST APIs · MongoDB</p>
-        <div class="skill-bar"><div class="skill-fill" data-w="70"></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill" data-w="70"></div></div><span class="skill-pct">70%</span></div>
       </div>
 
       <div class="skill-card reveal">
         <div class="skill-icon">⬡</div>
         <h3>Design</h3>
         <p>Figma · Typography · Spacing · Motion</p>
-        <div class="skill-bar"><div class="skill-fill" data-w="80"></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill" data-w="80"></div></div><span class="skill-pct">80%</span></div>
       </div>
 
       <div class="skill-card reveal">
         <div class="skill-icon">⬡</div>
         <h3>Tools</h3>
         <p>Git · VS Code · Vercel · Postman</p>
-        <div class="skill-bar"><div class="skill-fill" data-w="75"></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill" data-w="75"></div></div><span class="skill-pct">75%</span></div>
       </div>
 
     </div>
@@ -257,7 +291,7 @@
 
       <div class="project-item reveal" data-num="01">
         <div class="project-img darshan">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Luxury Restaurant">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="Luxury Restaurant" loading="lazy">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-info">
@@ -299,7 +333,7 @@
 
       <div class="project-item reveal" data-num="03">
         <div class="project-img darshan">
-          <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?q=80&w=1200&auto=format&fit=crop" alt="Portfolio">
+          <img src="https://images.unsplash.com/photo-1487700160041-babef9c3cb55?q=80&w=1200&auto=format&fit=crop" alt="Portfolio" loading="lazy">
           <div class="project-img-overlay"></div>
         </div>
         <div class="project-info">
@@ -331,7 +365,7 @@
       <h2>Let's build something<br><em>beautiful</em> together.</h2>
       <p class="contact-sub">
         Whether you have a project in mind, want to collaborate,
-        or just want to say Jai Shree Krishn — I'm here.
+        or just want to say Jai Shree Krishna — I'm here.
       </p>
 
       <form class="contact-form" id="contact-form">
@@ -361,7 +395,7 @@
         <span class="sep">·</span>
         <a href="#">Twitter</a>
         <span class="sep">·</span>
-        <a href="mailto:pjha6846@gmail.com">Email</a>
+        <a href="mailto:piyush@email.com">Email</a>
       </div>
     </div>
 
@@ -370,13 +404,19 @@
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-inner">
-      
+      <div class="footer-logo">
+        <span class="logo-dot"></span>
+        PJ
+      </div>
       <p class="footer-copy">
-        Crafted with stillness &amp; love &nbsp;·&nbsp; Vrindavan Inspired &nbsp;·&nbsp; © 2026 Piyush Jha
+        Crafted with stillness &amp; love &nbsp;·&nbsp; Vrindavan Inspired &nbsp;·&nbsp; © 2025 Piyush Jha
       </p>
       <p class="footer-quote">🪔 Jai Shree Krishn</p>
     </div>
   </footer>
+
+  <!-- ── BACK TO TOP ── -->
+  <button class="back-top" id="back-top" aria-label="Back to top">↑</button>
 
   <script src="script.js"></script>
 </body>
